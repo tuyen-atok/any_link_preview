@@ -287,6 +287,10 @@ class AnyLinkPreviewState extends State<AnyLinkPreview> {
   void initState() {
     super.initState();
 
+    initLinkPreview();
+  }
+
+  void initLinkPreview() {
     final providedLink = widget.link;
 
     _errorImage = widget.errorImage ??
@@ -311,6 +315,14 @@ class AnyLinkPreviewState extends State<AnyLinkPreview> {
 
       _loading = true;
       _getInfo(originalLink, widget.proxyUrl);
+    }
+  }
+
+  @override
+  void didUpdateWidget(AnyLinkPreview oldWidget) {
+    super.didUpdateWidget(oldWidget);
+    if (oldWidget.link != widget.link) {
+      initLinkPreview();
     }
   }
 
